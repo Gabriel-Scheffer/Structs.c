@@ -1,0 +1,66 @@
+#include<stdio.h>
+/*Crie um programa que permita armazenar o nome, a altura e da data de nascimento de até 3 pessoas
+Cada pessoa deve ser representada por uma struct dentro de um vetor. 
+O nome, a data de nascimento e altura de cada pessoa devem ser informados pelo teclado.
+Posteriormente imprima os nomes das pessoas que possuem altura superior a 1,78*/
+struct data
+{
+    int dia;
+    int mes;
+    int ano;
+};
+struct dados
+{
+    char nome[50];
+    float altura;
+    struct data nascimento;
+};
+
+main()
+{
+    int i;
+    struct dados info[3];
+    struct data nascimento[3];
+    for(i=0;i<3;i++)
+    {
+        printf("Digite o nome da pessoa:");
+        scanf("%s", &info[i].nome);
+        printf("Digite a altura do %s =", info[i].nome);
+        scanf("%f", &info[i].altura);
+        while(info[i].altura<0 || info[i].altura>3.0)
+            {
+                printf("Altura invalida, digite novamente:");
+                scanf("%f", &info[i].altura);
+            }
+        printf("Digite o dia de nascimento:");
+        scanf("%d", &info[i].nascimento.dia);
+        while(info[i].nascimento.dia<0 || info[i].nascimento.dia>31)
+        {
+            printf("Dia invalido, digite novamente:");
+            scanf("%d", &info[i].nascimento.dia);
+        }
+        printf("Digite o mes:");
+        scanf("%d", &info[i].nascimento.mes);
+        while(info[i].nascimento.mes<0 || info[i].nascimento.mes>12)
+        {
+            printf("mes invalido, digite novamente:");
+            scanf("%d", &info[i].nascimento.mes);
+        }
+        printf("Digite o ano (com 4 caracter) :");
+        scanf("%d", &info[i].nascimento.ano);
+        while(info[i].nascimento.ano<1900 || info[i].nascimento.ano>2023)
+        {
+            printf("Ano invalido, digite novamente:");
+            scanf("%d", &info[i].nascimento.ano);
+        }
+    }
+    for(i=0; i<3;i++)
+    {
+        if(info[i].altura>1.78)
+        {
+         printf("Nome = %s | altura %.2f || nascimento %d/%d/%d\n", info[i].nome, info[i].altura, info[i].nascimento.dia, info[i].nascimento.mes, info[i].nascimento.ano);   
+        }
+    }
+    
+    
+}
